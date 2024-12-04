@@ -1,6 +1,6 @@
-namespace CohnectSDK {
+namespace CohnectSDK.Client {
     namespace Extensions {
-        public static class GuidExtensions {
+        public static class CohnectGuidExtensions {
             public static string ToStringLittleEndian(this Guid guid) {
                 var bigEndianBytes = guid.ToByteArray();
 
@@ -8,7 +8,7 @@ namespace CohnectSDK {
                     throw new ArgumentException("Big endian byte array must be 16 bytes long");
                 }
 
-                byte[] littleEndianBytes = new byte[16];
+                var littleEndianBytes = new byte[16];
 
                 // Reorder to match C# Guid's internal structure (little-endian for the first 3 fields)
                 // Data1 (4 bytes) - reverse
@@ -28,7 +28,7 @@ namespace CohnectSDK {
                 // The remaining 8 bytes (Data4) remain in the same order
                 Array.Copy(bigEndianBytes, 8, littleEndianBytes, 8, 8);
 
-                Guid newGuid = new Guid(littleEndianBytes);
+                var newGuid = new Guid(littleEndianBytes);
                 return newGuid.ToString();
             }
         }

@@ -1,4 +1,4 @@
-namespace CohnectSDK {
+namespace CohnectSDK.Client {
     public enum CohnectOpcode : short {
         Get = 0x01,
         Set = 0x02,
