@@ -12,31 +12,28 @@ namespace CohnectSDK.Client {
             _clientUuid = Guid.NewGuid();
         }
 
-        public async void Get(string key) {
-            var parameters = new RequestParamsGet{ClientUuid=_clientUuid, Key=key};
-            var packet = RequestPacketTUtils.FromOpcode(RequestOp.GET, parameters);
-
+        public async void Ping() {
+            var packet = RequestPacketTUtils.FromOpcode(RequestOp.PING, body: new RequestParamsBase{ClientUuid=_clientUuid});
             await SendPacketAsync(packet);
         }
 
-        public async void Set(string key, object data) {
-            var parameters = new RequestParamsSet{ClientUuid=_clientUuid, Key=key, Data=data};
-            var packet = RequestPacketTUtils.FromOpcode(RequestOp.SET, parameters);
-
+        public async void SessionStart() {
+            var packet = RequestPacketTUtils.FromOpcode(RequestOp.SESSION_START, body: new RequestParamsBase{ClientUuid=_clientUuid});
             await SendPacketAsync(packet);
         }
 
-        public async void SetClientTags(string[] tags) {
-            var parameters = new RequestParamsSetClientTags{ClientUuid=_clientUuid, Tags=tags};
-            var packet = RequestPacketTUtils.FromOpcode(RequestOp.SET_CLIENT_TAGS, parameters);
-
+        public async void SessionEnd() {
+            var packet = RequestPacketTUtils.FromOpcode(RequestOp.SESSION_END, body: new RequestParamsBase{ClientUuid=_clientUuid});
             await SendPacketAsync(packet);
         }
 
-        public async void Execute(string action, Dictionary<string, object> actionParams) {
-            var parameters = new RequestParamsExecute{ClientUuid=_clientUuid, Action=action, Params=actionParams};
-            var packet = RequestPacketTUtils.FromOpcode(RequestOp.EXECUTE, parameters);
+        public async void FireEvent() {
+            var packet = RequestPacketTUtils.FromOpcode(RequestOp.EVENT, body: new RequestParamsBase{ClientUuid=_clientUuid});
+            await SendPacketAsync(packet);
+        }
 
+        public async void RegisterClientTags() {
+            var packet = RequestPacketTUtils.FromOpcode(RequestOp.REGISTER_CLIENT_TAGS, body: new RequestParamsBase{ClientUuid=_clientUuid});
             await SendPacketAsync(packet);
         }
 

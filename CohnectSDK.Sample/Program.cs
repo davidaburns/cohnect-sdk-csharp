@@ -9,6 +9,7 @@ namespace CohnectSDKTestClient {
             var client = new CohnectClient(host, port);
             client.Get("TEST_GET_KEY");
             client.Set("TEST_SET_KEY", 1);
+            client.Get("TEST_SET_KEY");
         }
     }
 }

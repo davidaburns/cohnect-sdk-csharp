@@ -7,12 +7,11 @@ namespace CohnectSDK.Buffers
 
 public enum RequestOp : ushort
 {
-  GET = 0,
-  SET = 1,
-  SET_CLIENT_TAGS = 2,
-  EXECUTE = 3,
-  SUBSCRIBE = 4,
-  BROADCAST = 5,
+  PING = 0,
+  SESSION_START = 1,
+  SESSION_END = 2,
+  EVENT = 3,
+  REGISTER_CLIENT_TAGS = 4,
 };
 
 
